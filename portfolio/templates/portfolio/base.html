@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Adam's Portfolio Journey</title>
+        <!-- Tailwind CSS -->
+        <link href="{% static 'css/output.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class = "menu"> 
+                <button type="button" class="menu_button"> about </button>
+                <button type="button" class="menu_button"> projects </button>
+            </div>
+            <div class ="content_container">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class = "contacts">
+                <a href="https://www.linkedin.com/in/sanghun-park-adam/" target="_blank" rel="noopener noreferrer">
+                    <button type="button" class="image_button"> 
+                        <img src="{% static 'images/linkedin-logo/LI-Logo.png' %}" alt="LinkedIn" class="image"> 
+                    </button>
+                </a>
+                <button type="button" class="image_button" onclick="copyEmail()"> 
+                    <img src="{% static 'images/gmail_logo.png' %}" alt="E-mail" class="image"> 
+                </button>
+                <a href="https://github.com/Sanghun1Adam1Park?tab=repositories" target="_blank" rel="noopener noreferrer">
+                    <button type="button" class="image_button"> 
+                        <img src="{% static 'images/GitHub-Logos/GitHub_Logo_White.png' %}" alt="GitHub" class="image"> 
+                    </button>
+                </a>
+            </div>
+        </div>
+        
+        <!--JavaScript loaded.-->
+        <script src="{% static 'js/scripts.js' %}"></script>
+    </body>
+</html>

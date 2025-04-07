@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* custom font */
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap");
+@import "tailwindcss";
+@theme {
+    --font-jetbrains: "JetBrains Mono", monospace; 
+}
+@layer base {
+    html {
+        font-family: var(--font-jetbrains);
+    }
+    body {
+        background-color: #1e1e1e;
+        color: #d4d4d4;
+        @apply px-10 py-10;
+    }
+}
+
+@layer components {
+    .container {
+        aspect-ratio: 16 / 9; /* Allows for a 16:9 aspect ratio */
+        margin: 0 auto; /* Center the container (x, y) */
+    }
+
+    .menu {
+        @apply w-full h-1/8
+               py-1 px-4
+        flex justify-end items-center space-x-4; /* Align right, vertically center, Space between menu items */
+    }
+    .menu_button {
+        
+    }
+    .menu_button:hover {
+        @apply font-bold italic;
+        color: #ffffff;
+    }
+
+    .content_container {
+        @apply w-full h-6/8;
+    }
+    .content_container h1 {
+        @apply font-bold;
+        font-size: 40px;
+        color: #ffffff; 
+    }
+
+    .contacts {
+        @apply w-full h-1/8
+               px-4
+        flex justify-evenly items-stretch;
+    }
+    .image_button {
+        @apply w-20 h-16
+        flex justify-center items-center;
+    }
+    .image_button img {
+        @apply w-full h-full object-contain; /* Ensures the image fits within the button */
+    }
+}
