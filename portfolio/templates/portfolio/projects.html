@@ -1,0 +1,11 @@
+{% extends './base.html' %}
+
+{% block content %}
+<h1> 
+    List of Projects 
+</h1>
+{% for project in projects %}
+    <p>{{ project.name }}</p>
+{% endfor %}
+
+{% endblock %}

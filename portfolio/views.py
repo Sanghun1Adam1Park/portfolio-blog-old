@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from github import Github
+from .models import Project
 
 def about(request):
     """_summary_
@@ -9,3 +10,35 @@ def about(request):
         request (_type_): django request from ./urls.py
     """
     return render(request, 'portfolio/about.html', {})
+
+def projects(request):
+    """_summary_
+        Returns HTML for 'about' page.
+        
+    Args:
+        request (_type_): django request from ./urls.py
+    """
+    projects = Project.objects.all() # Get all projects from the database
+    return render(request, 'portfolio/projects.html', {'projects' : projects})
+
+def update_projects(request):
+    """_summary_
+        Updates the projects in the database by fetching from GitHub using GitHub REST API.   
+    """
+    hub = Github()
+    
+    my_repos = hub.get_user("sanghun1adam1park").get_repos()
+    for repo in my_repos:
+        Project.objects.update_or_create(
+            id=repo.id,
+            defaults={
+                "name": repo.name,
+                "description": repo.description or "no description",
+                "url": repo.html_url,
+                "updated": repo.updated_at,
+            }
+        )                                            
+    # Redirect to the 'projects' view
+    return redirect('projects')    
+    
+    

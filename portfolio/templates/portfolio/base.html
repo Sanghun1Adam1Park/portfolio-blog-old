@@ -9,9 +9,13 @@
     </head>
     <body>
         <div class="container">
-            <div class = "menu"> 
-                <button type="button" class="menu_button"> about </button>
-                <button type="button" class="menu_button"> projects </button>
+            <div class="menu"> 
+                <a href="{% url 'about' %}">
+                    <button type="button" class="menu_button {% if request.path == '/' %}font-bold text-white{% endif %}">about</button>
+                </a>
+                <a href="{% url 'projects' %}">
+                    <button type="button" class="menu_button {% if request.path == '/projects/' %}font-bold text-white{% endif %}">projects</button>
+                </a>
             </div>
             <div class ="content_container">
                 {% block content %}

@@ -21,6 +21,7 @@
 
 @layer components {
     .container {
+        @apply gap-x-4; 
         aspect-ratio: 16 / 9; /* Allows for a 16:9 aspect ratio */
         margin: 0 auto; /* Center the container (x, y) */
     }
@@ -28,32 +29,38 @@
     .menu {
         @apply w-full h-1/8
                py-1 px-4
-        flex justify-end items-center space-x-4; /* Align right, vertically center, Space between menu items */
+               flex justify-end items-center space-x-8; /* Align right, vertically center, Space between menu items */
     }
     .menu_button {
-        
+        font-size: 27px;
     }
     .menu_button:hover {
         @apply font-bold italic;
+        font-size: 30px;
         color: #ffffff;
     }
 
     .content_container {
-        @apply w-full h-6/8;
+        @apply w-full h-6/8
+               overflow-y-auto; /* Allows vertical scrolling */
     }
     .content_container h1 {
-        @apply font-bold;
-        font-size: 40px;
+        @apply font-bold px-6;
+        font-size: 44px;
         color: #ffffff; 
+    }
+    .content_container p {
+        @apply px-4;
+        font-size: 22px;
     }
 
     .contacts {
         @apply w-full h-1/8
                px-4
-        flex justify-evenly items-stretch;
+        flex justify-around items-stretch;
     }
     .image_button {
-        @apply w-20 h-16
+        @apply w-28 h-22
         flex justify-center items-center;
     }
     .image_button img {
