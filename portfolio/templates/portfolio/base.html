@@ -8,34 +8,35 @@
         <link href="{% static 'css/output.css' %}" rel="stylesheet">
     </head>
     <body>
-        <div class="container">
-            <div class="menu"> 
-                <a href="{% url 'about' %}">
-                    <button type="button" class="menu_button {% if request.path == '/' %}font-bold text-white{% endif %}">about</button>
-                </a>
-                <a href="{% url 'projects' %}">
-                    <button type="button" class="menu_button {% if request.path == '/projects/' %}font-bold text-white{% endif %}">projects</button>
-                </a>
-            </div>
-            <div class ="content_container">
-                {% block content %}
-                {% endblock %}
-            </div>
-            <div class = "contacts">
-                <a href="https://www.linkedin.com/in/sanghun-park-adam/" target="_blank" rel="noopener noreferrer">
-                    <button type="button" class="image_button"> 
-                        <img src="{% static 'images/linkedin-logo/LI-Logo.png' %}" alt="LinkedIn" class="image"> 
-                    </button>
-                </a>
-                <button type="button" class="image_button" onclick="copyEmail()"> 
-                    <img src="{% static 'images/gmail_logo.png' %}" alt="E-mail" class="image"> 
+        <div class="menu"> 
+            <a href="{% url 'about' %}">
+                <button type="button" class="menu_button {% if request.path == '/' %}text-white{% endif %}">about</button>
+            </a>
+            <a href="{% url 'projects' %}">
+                <button type="button" class="menu_button {% if request.path == '/projects/' %}text-white{% endif %}">projects</button>
+            </a>
+            <a href="{% url 'analytics' %}"> <!-- Fill in later -->
+                <button type="button" class="menu_button {% if request.path == '/analytics/' %}text-white{% endif %}">analytics</button>
+            </a>
+        </div>
+        <div class ="content_container">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class = "contacts">
+            <a href="https://www.linkedin.com/in/sanghun-park-adam/" target="_blank" rel="noopener noreferrer">
+                <button type="button" class="image_button"> 
+                    <img src="{% static 'images/linkedin.png' %}" alt="LinkedIn" class="image"> 
                 </button>
-                <a href="https://github.com/Sanghun1Adam1Park?tab=repositories" target="_blank" rel="noopener noreferrer">
-                    <button type="button" class="image_button"> 
-                        <img src="{% static 'images/GitHub-Logos/GitHub_Logo_White.png' %}" alt="GitHub" class="image"> 
-                    </button>
-                </a>
-            </div>
+            </a>
+            <button type="button" class="image_button" onclick="copyEmail()"> 
+                <img src="{% static 'images/mail.png' %}" alt="E-mail" class="image"> 
+            </button>
+            <a href="https://github.com/Sanghun1Adam1Park?tab=repositories" target="_blank" rel="noopener noreferrer">
+                <button type="button" class="image_button"> 
+                    <img src="{% static 'images/git.png' %}" alt="GitHub" class="image"> 
+                </button>
+            </a>
         </div>
         
         <!--JavaScript loaded.-->

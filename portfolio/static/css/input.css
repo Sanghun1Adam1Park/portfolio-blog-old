@@ -8,62 +8,106 @@
 @theme {
     --font-jetbrains: "JetBrains Mono", monospace; 
 }
+
 @layer base {
-    html {
-        font-family: var(--font-jetbrains);
-    }
     body {
-        background-color: #1e1e1e;
-        color: #d4d4d4;
-        @apply px-10 py-10;
+        @apply bg-black /* Background color */
+               px-10 py-10 /* Padding x and y*/
+               text-[#d4d4d4] font-jetbrains /* Font color and family */
     }
 }
 
 @layer components {
-    .container {
-        @apply gap-x-4; 
-        aspect-ratio: 16 / 9; /* Allows for a 16:9 aspect ratio */
-        margin: 0 auto; /* Center the container (x, y) */
+    ::-webkit-scrollbar {
+        width: 3px; /* Hide scrollbar */
+        height: 3px; /* Hide scrollbar */
+    }
+    ::-webkit-scrollbar:hover {
+        width: 10px; /* Hide scrollbar */
+        height: 5px; /* Hide scrollbar */
+        background: #545454; /* Background color on hover */
     }
 
     .menu {
-        @apply w-full h-1/8
-               py-1 px-4
-               flex justify-end items-center space-x-8; /* Align right, vertically center, Space between menu items */
+        @apply px-4 /* Padding x */
+               text-[#adb5bd] /* Text color */
+               justify-end /* Align items to the right */
+               flex flex-row gap-x-5 /* Horizontal gap between items */; 
     }
     .menu_button {
-        font-size: 27px;
+        @apply text-[27px] /* Font size */;
     }
     .menu_button:hover {
-        @apply font-bold italic;
-        font-size: 30px;
-        color: #ffffff;
+        @apply italic /* Italic text on hover */
+               text-[#dee2e6] /* White text on hover */
+               mx-2 /* Make margin on x on hover */; 
     }
 
     .content_container {
-        @apply w-full h-6/8
-               overflow-y-auto; /* Allows vertical scrolling */
+        @apply h-dvh /* Full height of the viewport */
+               px-4 /* Padding x */
+               overflow-y-auto /* Allows vertical scrolling */
+               overscroll-auto /* Smooth scrolling */
+               border border-white;
     }
     .content_container h1 {
-        @apply font-bold px-6;
-        font-size: 44px;
-        color: #ffffff; 
+        @apply px-6
+               text-[50px] text-[#ffffff]; /* Font size and color */
     }
     .content_container p {
-        @apply px-4;
-        font-size: 22px;
+        @apply px-6
+               text-[30px]; /* Font size */
+    }
+    .button_container {
+        @apply p-10 /* Padding */
+               grid grid-cols-3 gap-7 /* Horizontal gap between items */
+               border border-white; 
+    }
+    .project_button_border {
+        @apply p-5 /* Padding */
+               h-[400px] /* Min and max height */
+               bg-[#272727] /* Background color */
+               border border-white rounded-[2em]; 
+    }
+    .project_button {
+        @apply w-full h-full /* Full width and height */
+               border border-white;
+    }
+    .project_title {
+        @apply h-1/6 /* Height */
+               px-2 /* Padding x */
+               flex justify-start gap-2 items-center /* Align items to the left */
+               border border-white;
+    }
+    .project_title .title { 
+        @apply w-5/6 /* Width */
+               text-[22px] /* Font size */
+               text-white /* Text color */
+               overflow-x-auto /* Allow horizontal scrolling */;
+    }
+    
+    .project_title .image_button {
+        @apply w-full h-full /* Width and height */;
+    }
+    .project_description {
+        @apply h-2/3 /* Height */
+               overflow-y-auto /* Allow vertical scrolling */
+               p-2 /* Padding x */
+               border border-white;
+    }
+
+    .project_tags {
+        @apply h-1/6 /* Height */
+               p-2 /* Padding x */
+               border border-white;
     }
 
     .contacts {
-        @apply w-full h-1/8
-               px-4
-        flex justify-around items-stretch;
+        @apply px-32 /* Padding x */
+               flex justify-between /* Even horizontal gap between items */; 
     }
     .image_button {
-        @apply w-28 h-22
-        flex justify-center items-center;
-    }
-    .image_button img {
-        @apply w-full h-full object-contain; /* Ensures the image fits within the button */
+        @apply w-36 h-24 /* Width and height */
+               flex items-center justify-center /* Center the image */;       
     }
 }

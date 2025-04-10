@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Project(models.Model):
     """_summary_
         Project model for storing project information.
@@ -10,6 +9,7 @@ class Project(models.Model):
     description = models.TextField()
     url = models.URLField()
     updated = models.DateTimeField(auto_now=False)
+    visible = models.BooleanField(default=False) 
     
     def __str__(self):
         return f"{self.name} - {self.description}"

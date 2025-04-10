@@ -1,11 +1,38 @@
 {% extends './base.html' %}
+{% load static %}
 
 {% block content %}
-<h1> 
-    List of Projects 
-</h1>
-{% for project in projects %}
-    <p>{{ project.name }}</p>
-{% endfor %}
-
+    <div class="search_header">
+        <h1> 
+            List of My Projects 
+        </h1>
+    </div>
+    <div class="button_container">
+        {% if user.is_authenticated %}
+            <div class="project_button">
+                <button type="button" class="edit_button">+</button>
+            </div>        
+        {% endif %}
+    
+        {% for project in projects %}
+            <div class="project_button_border">
+                <div class="project_button">
+                    <div class="project_title">
+                        <div class="title">
+                            {{ project.name }}
+                        </div>
+                        <a href="{{ project.url }}">
+                            <button type="button" class="image_button"> 
+                                <img src="{% static 'images/git-repo.png' %}" alt="GitHub" class="image"> 
+                            </button>
+                        </a> 
+                    </div>
+                    <div class="project_description">
+                        {{ project.description }}
+                    </div>
+                    <div class="project_tags"></div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
