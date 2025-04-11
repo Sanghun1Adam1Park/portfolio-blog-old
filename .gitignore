@@ -31,5 +31,5 @@ $RECYCLE.BIN/
 .history/
 *.code-workspace
 
-# Tailwind CSS
-tailwindcss
+# Tailwind CSS Node.js modules 
+node_modules/

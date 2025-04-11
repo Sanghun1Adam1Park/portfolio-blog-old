@@ -108,7 +108,7 @@
                overflow-x-auto /* Allow horizontal scrolling */
                bg-[#3A3A3A] /* Background color */
                border border-none rounded-[1em]
-               flex justify-start gap-2 items-center /* Align items to the left */;
+               flex justify-start gap-2 items-center /* Align items to the left */; 
     }
     .edit_button {
         @apply text-[50px] text-white font-bold align-middle
@@ -117,7 +117,7 @@
     }
     
     .edit_button_container {
-        
+        @apply border border-white;
     }
 
     .contacts {
