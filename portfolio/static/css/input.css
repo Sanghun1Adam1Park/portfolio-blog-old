@@ -13,7 +13,7 @@
     body {
         @apply bg-black /* Background color */
                px-10 py-10 /* Padding x and y*/
-               text-[#d4d4d4] font-jetbrains /* Font color and family */
+               font-jetbrains /* Font color and family */
     }
 }
 
@@ -25,12 +25,12 @@
     ::-webkit-scrollbar:hover {
         width: 10px; /* Hide scrollbar */
         height: 5px; /* Hide scrollbar */
-        background: #545454; /* Background color on hover */
+        background: #4d4d4d; /* Background color on hover */
     }
 
     .menu {
         @apply px-4 /* Padding x */
-               text-[#adb5bd] /* Text color */
+               text-[#8c8c8c] /* Text color */
                justify-end /* Align items to the right */
                flex flex-row gap-x-5 /* Horizontal gap between items */; 
     }
@@ -39,7 +39,7 @@
     }
     .menu_button:hover {
         @apply italic /* Italic text on hover */
-               text-[#dee2e6] /* White text on hover */
+               text-[#e8e8e8] /* Whiter text on hover */
                mx-2 /* Make margin on x on hover */; 
     }
 
@@ -48,36 +48,44 @@
                px-4 /* Padding x */
                overflow-y-auto /* Allows vertical scrolling */
                overscroll-auto /* Smooth scrolling */
-               border border-white;
+               bg-[#111111]
+               border border-none rounded-[1em] /* Rounded corners */; 
     }
     .content_container h1 {
         @apply px-6
-               text-[50px] text-[#ffffff]; /* Font size and color */
+               text-[50px] text-[#ffffff]
     }
     .content_container p {
         @apply px-6
-               text-[30px]; /* Font size */
+               text-[30px] /* Font size */
+               text-[#B7B7B7] /* Whiter text */
+    }
+    .search_header {
+        @apply 
+               flex 
+               border border-white;
+    }
+    .search_header h1 {
+        @apply border border-white; /* Font size and color */
     }
     .button_container {
         @apply p-10 /* Padding */
-               grid grid-cols-3 gap-7 /* Horizontal gap between items */
-               border border-white; 
+               grid grid-cols-3 gap-7 /* Horizontal gap between items */; 
     }
     .project_button_border {
         @apply p-5 /* Padding */
                h-[400px] /* Min and max height */
                bg-[#272727] /* Background color */
-               border border-white rounded-[2em]; 
+               flex justify-center /* Center the content */
+               border rounded-[2em]; 
     }
     .project_button {
-        @apply w-full h-full /* Full width and height */
-               border border-white;
+        @apply w-full h-full /* Full width and height */;
     }
     .project_title {
         @apply h-1/6 /* Height */
                px-2 /* Padding x */
-               flex justify-start gap-2 items-center /* Align items to the left */
-               border border-white;
+               flex justify-start gap-2 items-center /* Align items to the left */;
     }
     .project_title .title { 
         @apply w-5/6 /* Width */
@@ -85,21 +93,31 @@
                text-white /* Text color */
                overflow-x-auto /* Allow horizontal scrolling */;
     }
-    
     .project_title .image_button {
         @apply w-full h-full /* Width and height */;
     }
     .project_description {
         @apply h-2/3 /* Height */
                overflow-y-auto /* Allow vertical scrolling */
-               p-2 /* Padding x */
-               border border-white;
+               text-[#B7B7B7] /* Whiter text */
+               p-2 /* Padding x */;
     }
-
     .project_tags {
         @apply h-1/6 /* Height */
                p-2 /* Padding x */
-               border border-white;
+               overflow-x-auto /* Allow horizontal scrolling */
+               bg-[#3A3A3A] /* Background color */
+               border border-none rounded-[1em]
+               flex justify-start gap-2 items-center /* Align items to the left */;
+    }
+    .edit_button {
+        @apply text-[50px] text-white font-bold align-middle
+               w-full h-full /* Full width and height */;
+               
+    }
+    
+    .edit_button_container {
+        
     }
 
     .contacts {

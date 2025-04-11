@@ -3,9 +3,10 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Adam's Portfolio Journey</title>
+        <title>Sanghun Adam Park</title>
         <!-- Tailwind CSS -->
         <link href="{% static 'css/output.css' %}" rel="stylesheet">
+        
     </head>
     <body>
         <div class="menu"> 
@@ -15,7 +16,7 @@
             <a href="{% url 'projects' %}">
                 <button type="button" class="menu_button {% if request.path == '/projects/' %}text-white{% endif %}">projects</button>
             </a>
-            <a href="{% url 'analytics' %}"> <!-- Fill in later -->
+            <a href="{% url 'analytics' %}"> 
                 <button type="button" class="menu_button {% if request.path == '/analytics/' %}text-white{% endif %}">analytics</button>
             </a>
         </div>

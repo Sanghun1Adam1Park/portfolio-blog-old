@@ -7,15 +7,7 @@
             List of My Projects 
         </h1>
     </div>
-    <div class="button_container">
-        {% if user.is_authenticated %}
-            <div class="project_button_border">
-                <a href="{% url 'edit' %}">
-                    <button type="button" class="edit_button">+</button>
-                </a>
-            </div>        
-        {% endif %}
-    
+    <div class="edit_button_container">  
         {% for project in projects %}
             <div class="project_button_border">
                 <div class="project_button">

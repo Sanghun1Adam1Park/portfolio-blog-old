@@ -30,22 +30,23 @@ def analytics(request):
     """
     return render(request, 'portfolio/analytics.html', {})
 
-# def update_projects():
-#     """_summary_
-#         Updates the projects in the database by fetching from GitHub using GitHub REST API.   
-#     """
-#     hub = Github()
+def update_projects(request):
+    """_summary_
+        Updates the projects in the database by fetching from GitHub using GitHub REST API.   
+    """
+    hub = Github()
     
-#     my_repos = hub.get_user("sanghun1adam1park").get_repos()
-#     for repo in my_repos:
-#         Project.objects.update_or_create(
-#             id=repo.id,
-#             defaults={
-#                 "name": repo.name,
-#                 "description": repo.description or "no description",
-#                 "url": repo.html_url,
-#                 "updated": repo.updated_at,
-#             }
-#         )                                            
-#     # Redirect to the 'projects' view
-#     return redirect('projects')    
+    my_repos = hub.get_user("sanghun1adam1park").get_repos()
+    for repo in my_repos:
+        Project.objects.update_or_create(
+            id=repo.id,
+            defaults={
+                "name": repo.name,
+                "description": repo.description or "no description",
+                "url": repo.html_url,
+                "updated": repo.updated_at,
+            }
+        )                                            
+    
+    projects = Project.objects.all() # Get all projects from the database    
+    return render(request, 'portfolio/edit.html', {'projects' : projects})  
