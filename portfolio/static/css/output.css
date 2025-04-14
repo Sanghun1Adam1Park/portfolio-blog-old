@@ -252,9 +252,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-inline: calc(var(--spacing) * 6);
+    padding-inline: calc(var(--spacing) * 2);
+    padding-block: calc(var(--spacing) * 2);
   }
-  .search_header .tag {
+  .search_header .filter_tag {
     display: flex;
     align-items: center;
     justify-content: center;

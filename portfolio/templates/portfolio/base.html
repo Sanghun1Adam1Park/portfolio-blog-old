@@ -14,10 +14,10 @@
                 <button type="button" class="menu_button {% if request.path == '/' %}text-white{% endif %}">about</button>
             </a>
             <a href="{% url 'projects' %}">
-                <button type="button" class="menu_button {% if request.path == '/projects/' %}text-white{% endif %}">projects</button>
+                <button type="button" class="menu_button {% if '/projects/' in request.path %}text-white{% endif %}">projects</button>
             </a>
             <a href="{% url 'analytics' %}"> 
-                <button type="button" class="menu_button {% if request.path == '/analytics/' %}text-white{% endif %}">analytics</button>
+                <button type="button" class="menu_button {% if '/analytics/' in request.path %}text-white{% endif %}">analytics</button>
             </a>
         </div>
         <div class ="content_container">

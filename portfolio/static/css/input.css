@@ -61,10 +61,10 @@
                text-[#B7B7B7] /* Whiter text */
     }
     .search_header {
-        @apply px-6
+        @apply px-2 py-2
                flex justify-between items-center/* Even horizontal gap between items */;
     }
-    .search_header .tag {
+    .search_header .filter_tag {
         @apply text-[18px] text-white px-4 py-2 
                border border-none rounded-full
                flex items-center justify-center text-center;

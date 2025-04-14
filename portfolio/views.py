@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from github import Github
-from .models import Project
+from .models import Project, Tag
 
 def about(request):
     """_summary_
@@ -58,5 +58,6 @@ def filter(request, tag):
     """
     if tag.lower() == "all":
         return redirect('projects') # Redirect to all projects if tag is "all"
-    projects = Project.objects.filter(tags__name=tag) # Get all projects from the database
-    return render(request, 'portfolio/projects.html', {'projects' : projects, 'tag' : tag})
+    projects = Project.objects.filter(tags__name__iexact=tag) # Get all projects from the database
+    tag = Tag.objects.get(name__iexact=tag) # Get the tag object from the database
+    return render(request, 'portfolio/filtered.html', {'projects' : projects, 'tag' : tag})
