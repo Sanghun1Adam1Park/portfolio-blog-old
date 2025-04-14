@@ -18,7 +18,7 @@ def projects(request):
     Args:
         request (_type_): django request from ./urls.py
     """
-    projects = Project.objects.all(visible=True) # Get all projects from the database
+    projects = Project.objects.all() # Get all projects from the database
     return render(request, 'portfolio/projects.html', {'projects' : projects})
 
 def analytics(request):
@@ -30,7 +30,7 @@ def analytics(request):
     """
     return render(request, 'portfolio/analytics.html', {})
 
-def update_projects(request):
+def update_projects():
     """_summary_
         Updates the projects in the database by fetching from GitHub using GitHub REST API.   
     """
@@ -47,6 +47,16 @@ def update_projects(request):
                 "updated": repo.updated_at,
             }
         )                                            
-    
-    projects = Project.objects.all() # Get all projects from the database    
-    return render(request, 'portfolio/edit.html', {'projects' : projects})  
+
+def filter(request, tag):
+    """_summary_
+        Returns HTML for 'filtered' page.
+        
+    Args:
+        request (_type_): django request from ./urls.py
+        tag (_type_): tag to filter projects by
+    """
+    if tag.lower() == "all":
+        return redirect('projects') # Redirect to all projects if tag is "all"
+    projects = Project.objects.filter(tags__name=tag) # Get all projects from the database
+    return render(request, 'portfolio/projects.html', {'projects' : projects, 'tag' : tag})

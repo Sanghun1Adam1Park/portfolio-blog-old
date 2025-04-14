@@ -61,12 +61,13 @@
                text-[#B7B7B7] /* Whiter text */
     }
     .search_header {
-        @apply 
-               flex 
-               border border-white;
+        @apply px-6
+               flex justify-between items-center/* Even horizontal gap between items */;
     }
-    .search_header h1 {
-        @apply border border-white; /* Font size and color */
+    .search_header .tag {
+        @apply text-[18px] text-white px-4 py-2 
+               border border-none rounded-full
+               flex items-center justify-center text-center;
     }
     .button_container {
         @apply p-10 /* Padding */
@@ -96,6 +97,11 @@
     .project_title .image_button {
         @apply w-full h-full /* Width and height */;
     }
+    .project_title .edit_button {
+        @apply text-white /* Text color */
+               font-bold /* Bold text */
+               text-[42px] /* Font size */; 
+    }
     .project_description {
         @apply h-2/3 /* Height */
                overflow-y-auto /* Allow vertical scrolling */
@@ -109,15 +115,6 @@
                bg-[#3A3A3A] /* Background color */
                border border-none rounded-[1em]
                flex justify-start gap-2 items-center /* Align items to the left */; 
-    }
-    .edit_button {
-        @apply text-[50px] text-white font-bold align-middle
-               w-full h-full /* Full width and height */;
-               
-    }
-    
-    .edit_button_container {
-        @apply border border-white;
     }
 
     .contacts {

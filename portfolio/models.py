@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.forms import ValidationError
+from django.db.models.functions import Lower
 
 class Project(models.Model):
     """_summary_
@@ -17,6 +18,13 @@ class Project(models.Model):
     
     def __str__(self):
         return f"{self.name} - {self.description}"
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                Lower('name'), name='unique_lower_name'
+            )
+        ]
 
 class Category(models.Model):
     """Category model for grouping tags."""
@@ -31,6 +39,7 @@ class Category(models.Model):
 
 class Tag(models.Model):
     """Tag model associated with a category."""
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255, unique=True)  # globally unique
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='main_tag')
     is_main_key = models.BooleanField(default=False)  # To identify main tag
