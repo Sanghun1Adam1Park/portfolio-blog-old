@@ -18,7 +18,7 @@ def projects(request):
     Args:
         request (_type_): django request from ./urls.py
     """
-    projects = Project.objects.filter(visible=True) # Get all projects from the database
+    projects = Project.objects.all(visible=True) # Get all projects from the database
     return render(request, 'portfolio/projects.html', {'projects' : projects})
 
 def analytics(request):
