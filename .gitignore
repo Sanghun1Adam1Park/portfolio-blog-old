@@ -33,3 +33,7 @@ $RECYCLE.BIN/
 
 # Tailwind CSS Node.js modules 
 node_modules/
+
+# Ignore icon png files
+/subdirectory/*
+!/subdirectory/
