@@ -9,15 +9,6 @@
 .block {
   display: block;
 }
-.table {
-  display: table;
-}
-.border-collapse {
-  border-collapse: collapse;
-}
-.resize {
-  resize: both;
-}
 .text-white {
   color: var(--color-white);
 }
