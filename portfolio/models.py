@@ -1,5 +1,4 @@
 from django.db import models
-from .fields import CaseInsensitiveCharField
 
 class Project(models.Model):
     """_summary_
@@ -15,18 +14,48 @@ class Project(models.Model):
     
     def __str__(self):
         return f"{self.name} - {self.description}"
+    
+    class Meta:
+        ordering = ["updated"]
 
 class Category(models.Model):
-    """Category model for grouping tags."""
-    category_name = CaseInsensitiveCharField(max_length=255, unique=True, primary_key=True)
-    color = models.CharField(max_length=7, default="#FFFFFF")  
+    name = models.CharField(max_length=255, unique=True)
+    color = models.CharField(max_length=7, blank=False)
     
     def __str__(self):
-        return f'#{self.category_name}'
+        return self.name
 
-class Tag(Category):
-    """Tag model associated with a category."""
-    tag_name = CaseInsensitiveCharField(max_length=255, unique=True, primary_key=True)
+    def save(self, *args, **kwargs):
+        """_summary_
+            Creates category tag when you create new category.
+        """
+        created = not self.pk  # Check if this is a new instance
+        super().save(*args, **kwargs) 
+        if created:
+            Tag.objects.create(
+                name=f"{self.name}",
+                category=self,
+                is_category_tag=True
+            )
+    
+    class Meta:
+        ordering = ["name"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=['name'],
+                name='case_insensitive_name',
+                violation_error_message="Name must be unique (case insensitive)"
+            )
+        ]
 
+class Tag(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='tags')
+    is_category_tag = models.BooleanField(default=False)  # Marks the tag that represents the whole category
+    
     def __str__(self):
-        return f'# {super.__str__} - {self.tag_name}'
+        return f"{self.name} ({self.category.name})"
+    
+    class Meta:
+        unique_together = [('name', 'category'), ('category', 'is_category_tag')]
+        ordering = ['name']

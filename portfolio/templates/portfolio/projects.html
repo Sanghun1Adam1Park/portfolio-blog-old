@@ -17,7 +17,7 @@
                 {% for inner_tag in tags %}
                     <li>
                         <a class="tag tag-anchor"
-                        style="background-color: {{ inner_tag.color }};"
+                        style="background-color: {{ inner_tag.category.color }};"
                         href="{% url 'filter' tag=inner_tag.name %}">
                             # {{ inner_tag.name }}
                         </a>
@@ -57,7 +57,7 @@
                             {% for inner_tag in project.tags.all %}
                                 <a class="tag tag-anchor" 
                                    href="{% url 'filter' tag=inner_tag.name %}"
-                                   style="background-color: {{ inner_tag.color }};">
+                                   style="background-color: {{ inner_tag.category.color }};">
                                     # {{ inner_tag.name }} 
                                 </a>
                             {% endfor %}

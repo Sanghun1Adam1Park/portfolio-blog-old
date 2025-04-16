@@ -44,7 +44,13 @@ def filter(request, tag):
         return redirect('projects') # Redirect to all projects if tag is "all"
     try:
         tag = Tag.objects.get(name__iexact=tag) # Get the tag object from DB
-        projects = Project.objects.filter(tags=tag) # Get all projects that has the tag from DB
+        if tag.is_category_tag:
+            # Get all tags in the same category (excluding the category tag itself if needed)
+            related_tags = Tag.objects.filter(category=tag.category)
+            # Get projects that have ANY of the related tags
+            projects = Project.objects.filter(tags__in=related_tags).distinct()
+        else:
+            projects = Project.objects.filter(tags=tag) # Get all projects that has the tag from DB
         tags = Tag.objects.all() # Get all tags from DB for filter button 
         return render(request, 'portfolio/filtered.html', {'projects' : projects, 'tag' : tag, 'tags': tags})
     except Tag.DoesNotExist:
