@@ -3,44 +3,94 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Sanghun Adam Park</title>
-        <!-- Tailwind CSS -->
-        <link href="{% static 'css/output.css' %}" rel="stylesheet">
-        
+        <title>Sanghun "Adam" Park - Portfolio</title>
+         
+        <!-- Preloading and loading CSS(Tailwind) file -->
+        <link rel="preload" href="{% static 'css/output.css' %}" as="style">
+        <link href="{% static 'css/output.css' %}" rel="stylesheet">        
     </head>
     <body>
-        <div class="menu"> 
-            <a href="{% url 'about' %}">
-                <button type="button" class="menu_button {% if request.path == '/' %}text-white{% endif %}">about</button>
-            </a>
-            <a href="{% url 'projects' %}">
-                <button type="button" class="menu_button {% if '/projects/' in request.path %}text-white{% endif %}">projects</button>
-            </a>
-            <a href="{% url 'analytics' %}"> 
-                <button type="button" class="menu_button {% if '/analytics/' in request.path %}text-white{% endif %}">analytics</button>
-            </a>
-        </div>
-        <div class ="content_container">
+        <nav> 
+            <ul class="nav-menu">
+                <li>
+                    <a href="{% url 'about' %}" 
+                       role="button"
+                       class="nav-button {% if request.path == '/' %}text-white{% endif %}">
+                        About
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'projects' %}" 
+                       role="button"
+                       class="nav-button {% if '/projects/' in request.path %}text-white{% endif %}">
+                        Projects
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'analytics' %}" 
+                       role="button"
+                       class="nav-button {% if '/analytics/' in request.path %}text-white{% endif %}">
+                        Analytics
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-container">
             {% block content %}
             {% endblock %}
-        </div>
-        <div class = "contacts">
-            <a href="https://www.linkedin.com/in/sanghun-park-adam/" target="_blank" rel="noopener noreferrer">
-                <button type="button" class="image_button"> 
-                    <img src="{% static 'images/linkedin.png' %}" alt="LinkedIn" class="image"> 
-                </button>
-            </a>
-            <button type="button" class="image_button" onclick="copyEmail()"> 
-                <img src="{% static 'images/mail.png' %}" alt="E-mail" class="image"> 
-            </button>
-            <a href="https://github.com/Sanghun1Adam1Park?tab=repositories" target="_blank" rel="noopener noreferrer">
-                <button type="button" class="image_button"> 
-                    <img src="{% static 'images/git.png' %}" alt="GitHub" class="image"> 
-                </button>
-            </a>
-        </div>
+        </main>
         
-        <!--JavaScript loaded.-->
-        <script src="{% static 'js/scripts.js' %}"></script>
+        <!-- Footer with Contacts -->
+        <footer>
+            <ul class="footer-contacts">
+                <li>
+                    <a href="https://www.linkedin.com/in/sanghun-park-adam/" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <img src="{% static 'images/linkedin.png' %}" 
+                             alt="LinkedIn Profile">
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/Sanghun1Adam1Park?tab=repositories" 
+                       target="_blank" 
+                       rel="noopener noreferrer">
+                        <img src="{% static 'images/git.png' %}" 
+                             alt="GitHub Repositories">
+                    </a>
+                </li>
+                <li>
+                    <button type="button" 
+                            onclick="copyEmail('c2FuZ2h1bnBhcmswNjI4QGdtYWlsLmNvbQ==')">
+                        <img src="{% static 'images/mail.png' %}" 
+                             alt="Email">
+                    </button>
+                </li>
+            </ul>
+        </footer>
+
+        <!-- 1. Load Alpine.js FIRST (deferred) -->
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+        <!-- 2. Your custom script SECOND -->
+        <script>
+            function copyEmail(encoded_email) {
+                try {
+                    const email = atob(encoded_email);
+                    navigator.clipboard.writeText(email)
+                        .then(() => {
+                            alert("Copied email: " + email);
+                        })
+                        .catch(err => {
+                            alert("Failed to copy email, contact me via LinkedIn or GitHub.");
+                        });
+                } catch (error) {
+                    alert("Failed to copy email, contact me via LinkedIn or GitHub.");
+                    console.error("Copy error:", error);
+                }
+            }
+        </script>
     </body>
 </html>

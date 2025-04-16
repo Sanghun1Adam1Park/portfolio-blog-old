@@ -11,118 +11,142 @@
 
 @layer base {
     body {
-        @apply bg-black /* Background color */
-               px-10 py-10 /* Padding x and y*/
-               font-jetbrains /* Font color and family */
+        @apply bg-black /* Base background color */
+               font-jetbrains /* Base font (JetbrainMono) */
+               py-10 px-10 /* Padding y */
+               flex flex-col /* Allows to stack elem */; 
     }
 }
 
-@layer components {
-    ::-webkit-scrollbar {
-        width: 3px; /* Hide scrollbar */
-        height: 3px; /* Hide scrollbar */
+@layer components { 
+    button {
+        @apply cursor-pointer; /* Same hover effect as cursor of anchor */
     }
-    ::-webkit-scrollbar:hover {
-        width: 10px; /* Hide scrollbar */
-        height: 5px; /* Hide scrollbar */
-        background: #4d4d4d; /* Background color on hover */
+    .tag { /* Tag button style for all tags despite of functionality. */
+        @apply text-white /* Text color */ 
+               px-5 /* Padding x */
+               py-1 /* Padding y */
+               border border-none rounded-full; /* Rounded corners */
     }
 
-    .menu {
-        @apply px-4 /* Padding x */
-               text-[#8c8c8c] /* Text color */
+    /* Navigation Menu */
+    .nav-menu {
+        @apply flex flex-row /* Initilaize flexbox */
+               gap-x-5 /* Horizontal gap between items */
                justify-end /* Align items to the right */
-               flex flex-row gap-x-5 /* Horizontal gap between items */; 
+               items-center /* Align items to the center (horizontal) */;
     }
-    .menu_button {
-        @apply text-[27px] /* Font size */;
+    .nav-menu .nav-button {
+        @apply text-[#444444] /* Text color */
+               text-[27px] /* Font size */;
     }
-    .menu_button:hover {
+    .nav-menu .nav-button:hover {
         @apply italic /* Italic text on hover */
-               text-[#e8e8e8] /* Whiter text on hover */
-               mx-2 /* Make margin on x on hover */; 
+               text-[#eeeeee] /* Whiter text on hover */
+               mx-2 /* Make margin on x on hover */;
     }
 
-    .content_container {
-        @apply h-dvh /* Full height of the viewport */
-               px-4 /* Padding x */
-               overflow-y-auto /* Allows vertical scrolling */
-               overscroll-auto /* Smooth scrolling */
-               bg-[#111111]
-               border border-none rounded-[1em] /* Rounded corners */; 
+    /* Contacts Footer */
+    .footer-contacts {
+        @apply flex flex-row /* Initilaize flexbox */
+               justify-around /* Even space between items */
+               items-center /* Align items to the center (horizontal) */;
     }
-    .content_container h1 {
-        @apply px-6
-               text-[50px] text-[#ffffff]
+    .footer-contacts img {
+        @apply w-[64px] /* Width of the image */
+               h-[64px] /* Height of the image */;
     }
-    .content_container p {
-        @apply px-6
-               text-[30px] /* Font size */
-               text-[#B7B7B7] /* Whiter text */
+
+    /* Main Content */
+    .main-container {
+        @apply min-h-screen /* Minimum height of the screen */;
     }
-    .search_header {
-        @apply px-2 py-2
-               flex justify-between items-center/* Even horizontal gap between items */;
+    .main-container h1 {
+        @apply text-[50px] /* Font size */
+               text-[#ffffff] /* Text color */
+               px-10 /* Padding x */;
     }
-    .search_header .filter_tag {
-        @apply text-[18px] text-white px-4 py-2 
-               border border-none rounded-full
-               flex items-center justify-center text-center;
+    .main-container p {
+        @apply text-[32px] /* Font size */
+               text-[#999999] /* Text color */
+               px-10 /* Padding x */;
     }
-    .button_container {
-        @apply p-10 /* Padding */
-               grid grid-cols-3 gap-7 /* Horizontal gap between items */; 
+
+    .main-container .header-w-filter {
+        @apply flex flex-row
+               justify-start /* Space between items */
+               items-center /* Align items to the center (horizontal) */;
     }
-    .project_button_border {
-        @apply p-5 /* Padding */
-               h-[400px] /* Min and max height */
+    .main-container .header-w-filter .dropdown {
+        @apply relative inline-block /* Dropdown menu */;
+    }
+    .main-container .header-w-filter .dropdown .tag-button {
+        @apply text-[32px] /* Font size */;
+    }
+    .main-container .header-w-filter .dropdown .dropdown-tags {
+        @apply bg-transparent /* Transparent background */
+               absolute     /* Position absolute */
+               min-w-max /* Minimum width of the dropdown */
+               left-0 /* Align to the left */;
+    }
+    .main-container .header-w-filter .dropdown .dropdown-tags .tag-anchor {
+        @apply text-[28px] /* Font size */;
+    }
+
+    .main-container .project-container-container {
+        @apply grid grid-cols-3 /* grid which allows stacking items in certain order */
+               gap-7 /* Horizontal gap between items */
+               p-5;
+    }
+    .main-container .project-container-container .project-container {
+        @apply border rounded-[2em] /* Rounded corder */
+               h-[400px] /* Height */
                bg-[#272727] /* Background color */
-               flex justify-center /* Center the content */
-               border rounded-[2em]; 
+               p-3
+               flex justify-center /* Center the content */;
     }
-    .project_button {
-        @apply w-full h-full /* Full width and height */;
+    .main-container .project-container-container .project-container 
+    .project {
+        @apply w-full h-full;
     }
-    .project_title {
+    .main-container .project-container-container .project-container 
+    .project .title {
         @apply h-1/6 /* Height */
-               px-2 /* Padding x */
-               flex justify-start gap-2 items-center /* Align items to the left */;
+               flex justify-start gap-2 items-center; /* Align items to the left */
     }
-    .project_title .title { 
+    .main-container .project-container-container .project-container 
+    .project .title h2 {
         @apply w-5/6 /* Width */
-               text-[22px] /* Font size */
+               text-[25px] /* Font size */
                text-white /* Text color */
-               overflow-x-auto /* Allow horizontal scrolling */;
+               overflow-x-auto /* Allow horizontal scrolling */
+               px-2
+               h-full;
     }
-    .project_title .image_button {
-        @apply w-full h-full /* Width and height */;
+    .main-container .project-container-container .project-container 
+    .project .title a {
+        @apply text-[40px] /* Font size */
+               font-bold
+               text-white /* Text color */
+               w-1/6
+               flex justify-center /* Centers text horizontally & vertically */;
     }
-    .project_title .edit_button {
-        @apply text-white /* Text color */
-               font-bold /* Bold text */
-               text-[42px] /* Font size */; 
-    }
-    .project_description {
+    .main-container .project-container-container .project-container 
+    .project p {
         @apply h-2/3 /* Height */
                overflow-y-auto /* Allow vertical scrolling */
                text-[#B7B7B7] /* Whiter text */
-               p-2 /* Padding x */;
+               p-2 /* Padding x */
+               text-[20px];
     }
-    .project_tags {
+    .main-container .project-container-container .project-container 
+    .project .tags {
         @apply h-1/6 /* Height */
                p-2 /* Padding x */
                overflow-x-auto /* Allow horizontal scrolling */
                bg-[#3A3A3A] /* Background color */
-               border border-none rounded-[1em]
+               border border-none rounded-[1.2em]
                flex justify-start gap-2 items-center /* Align items to the left */; 
     }
-
-    .contacts {
-        @apply px-32 /* Padding x */
-               flex justify-between /* Even horizontal gap between items */; 
-    }
-    .image_button {
-        @apply w-36 h-24 /* Width and height */
-               flex items-center justify-center /* Center the image */;       
-    }
 }
+
