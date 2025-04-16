@@ -1,49 +1,79 @@
 {% extends './base.html' %}
 {% load static %}
-
 {% block content %}
-    <div class="search_header">
-        <h1>List of My Projects </h1>
-        <div class="filter_tag" style="background-color: {{ tag.color }};">
-            # {{ tag.name }}
+    <header class="header-w-filter">
+        <h1>Projects</h1>
+        <div x-data="{ open: false }"
+            class="dropdown">
+            <button @click="open = !open"
+                    class="tag tag-button"
+                    style="background-color: {{ tag.color }};">
+                # {{ tag.name }}
+            </button>    
+            <ul x-show="open"
+                x-transition
+                @click.away="open = false"
+                class="dropdown-tags">
+                <li>
+                    <a class="tag tag-anchor"
+                    style="background-color: #5b5b5b;"
+                    href="{% url 'projects' %}">
+                        # ALL
+                    </a>
+                </li>
+                {% for inner_tag in tags %}
+                    {% if inner_tag.name != tag.name %}
+                        <li>
+                            <a class="tag tag-anchor"
+                            style="background-color: {{ inner_tag.color }};"
+                            href="{% url 'filter' tag=inner_tag.name %}">
+                                # {{ inner_tag.name }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
-    </div>
-    <div class="button_container">
+    </header>
+    <section class="project-container-container">
         {% for project in projects %}
             {% if project.visible or user.is_authenticated %}
-                <div class="project_button_border">
-                    <div class="project_button">
-                        <div class="project_title">
-                            <div class="title">{{ project.name }}</div>
+                <div class="project-container">
+                    <article class="project">
+                        <header class="title">
+                            <h2 class="title">
+                                {{ project.name }}
+                            </h2>
                             {% if not user.is_authenticated %}
-                                <a href="{{ project.url }}" target="_blank" rel="noopener noreferrer">
-                                    <button type="button" class="image_button"> 
-                                        <img src="{% static 'images/git-repo.png' %}" alt="GitHub" class="image"> 
-                                    </button>
+                                <a href="{{ project.url }}" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    role="button">
+                                    <img src="{% static 'images/git-repo.png' %}" 
+                                            alt="GitHub"> 
                                 </a>
                             {% else %}
-                                <a href="{% url 'admin:portfolio_project_change' project.id %}" target="_blank" rel="noopener noreferrer">
-                                    <div class="edit_button">
-                                        + 
-                                    </div>
+                                <a href="{% url 'admin:portfolio_project_change' project.id %}" 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    role="button">
+                                    + 
                                 </a>
-                                {% endif %}
-                        </div>
-
-                        <div class="project_description">
-                            {{ project.description }}
-                        </div>
-
-                        <div class="project_tags">
-                            {% for tag in project.tags.all %}
-                                <div class="tag text-white px-2 border border-none rounded-full" style="background-color: {{ tag.color }};">
-                                    # {{ tag.name }} 
-                                </div>
+                            {% endif %}
+                        </header>
+                        <p>{{ project.description }}</p>
+                        <footer class="tags">
+                            {% for inner_tag in project.tags.all %}
+                                <a class="tag tag-anchor" 
+                                href="{% url 'filter' tag=inner_tag.name %}"
+                                style="background-color: {{ inner_tag.color }};">
+                                    # {{ inner_tag.name }} 
+                                </a>
                             {% endfor %}
-                        </div>
-                    </div>
+                        </footer>
+                    </article>
                 </div>
             {% endif %}
         {% endfor %}
-    </div>
+    </section>
 {% endblock %}

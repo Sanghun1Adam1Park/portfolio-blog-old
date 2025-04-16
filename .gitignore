@@ -35,5 +35,9 @@ $RECYCLE.BIN/
 node_modules/
 
 # Ignore icon png files
-/subdirectory/*
-!/subdirectory/
+/portfolio/static/images/*
+!/portfolio/static/images/
+
+# Ignore old html and css files
+/portfolio/templates/old_portfolio/*
+/portfolio/static/css/old_input.css
