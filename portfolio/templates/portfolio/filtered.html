@@ -64,11 +64,10 @@
                         <p>{{ project.description }}</p>
                         <footer class="tags">
                             {% for inner_tag in project.tags.all %}
-                                <a class="tag tag-anchor" 
-                                href="{% url 'filter' tag=inner_tag.name %}"
-                                style="background-color: {{ inner_tag.category.color }};">
-                                    # {{ inner_tag.name }} 
-                                </a>
+                                <div class="tag"
+                                    style="background-color: {{ inner_tag.category.color }};">
+                                    # {{ inner_tag.name }}
+                                </div>
                             {% endfor %}
                         </footer>
                     </article>

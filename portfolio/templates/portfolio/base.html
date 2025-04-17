@@ -15,21 +15,21 @@
                 <li>
                     <a href="{% url 'about' %}" 
                        role="button"
-                       class="nav-button {% if request.path == '/' %}text-white{% endif %}">
+                       class="nav-button {% if request.path == '/' %}italic opacity-75 hover:opacity-100{% endif %}">
                         About
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'projects' %}" 
                        role="button"
-                       class="nav-button {% if '/projects/' in request.path %}text-white{% endif %}">
+                       class="nav-button {% if '/projects/' in request.path %}italic opacity-75 hover:opacity-100{% endif %}">
                         Projects
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'analytics' %}" 
                        role="button"
-                       class="nav-button {% if '/analytics/' in request.path %}text-white{% endif %}">
+                       class="nav-button {% if '/analytics/' in request.path %}italic opacity-75 hover:opacity-100{% endif %}">
                         Analytics
                     </a>
                 </li>
@@ -37,7 +37,8 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="main-container">
+        <main class="main-container
+                     shadow-inner-glow py-6 rounded-xl">
             {% block content %}
             {% endblock %}
         </main>

@@ -10,6 +10,9 @@ export default {
       fontFamily: {
         'jetbrains': ['"JetBrains Mono"', 'monospace'],
       },
+      fontFamily: {
+        'oxanium': ['Oxanium', 'monospace'],
+      },
     },
   },
   plugins: [],
