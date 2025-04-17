@@ -134,7 +134,9 @@
     .main-container .project-container-container .project-container 
     .project p {
         @apply h-2/3 /* Height */
-               overflow-y-auto /* Allow vertical scrolling */
+               overflow-y-auto
+               overflow-x-hidden /* 👈 prevent horizontal scroll */
+               break-words /* 👈 wrap long words/text */
                text-[#B7B7B7] /* Whiter text */
                p-2 /* Padding x */
                text-[20px];

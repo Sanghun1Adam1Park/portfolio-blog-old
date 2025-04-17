@@ -309,9 +309,11 @@
   }
   .main-container .project-container-container .project-container .project p {
     height: calc(2/3 * 100%);
+    overflow-x: hidden;
     overflow-y: auto;
     padding: calc(var(--spacing) * 2);
     font-size: 20px;
+    overflow-wrap: break-word;
     color: #B7B7B7;
   }
   .main-container .project-container-container .project-container .project .tags {
