@@ -15,21 +15,21 @@
                 <li>
                     <a href="{% url 'about' %}" 
                        role="button"
-                       class="nav-button {% if request.path == '/' %}italic opacity-75 hover:opacity-100{% endif %}">
+                       class="nav-button {% if request.path == '/' %}italic opacity-75{% endif %}">
                         About
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'projects' %}" 
                        role="button"
-                       class="nav-button {% if '/projects/' in request.path %}italic opacity-75 hover:opacity-100{% endif %}">
+                       class="nav-button {% if '/projects/' in request.path %}italic opacity-75{% endif %}">
                         Projects
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'analytics' %}" 
                        role="button"
-                       class="nav-button {% if '/analytics/' in request.path %}italic opacity-75 hover:opacity-100{% endif %}">
+                       class="nav-button {% if '/analytics/' in request.path %}italic opacity-75{% endif %}">
                         Analytics
                     </a>
                 </li>
@@ -37,8 +37,22 @@
         </nav>
 
         <!-- Main Content -->
-        <main class="main-container
-                     shadow-inner-glow py-6 rounded-xl">
+        <main class="main-container"
+              style="
+              box-shadow:
+                  inset 0 0 80px rgba(30, 30, 63, 0.5),
+                  inset 0 0 20px rgba(177, 136, 255, 0.5),
+                  0 0 80px rgba(164, 164, 234, 0.5),
+                  0 0 20px rgba(177, 136, 255, 0.5);
+              background:
+                  {% if '/projects/' in request.path %}
+                    conic-gradient(#8d75cb, #674ea7, #1e1e3f, #352362);
+                  {% elif '/analytics/' in request.path %}
+                    radial-gradient(circle,#0c0c23, #1e1e3f, #352362);
+                  {% else %}
+                    linear-gradient(to top,#0c0c23, #1e1e3f, #352362, #392370);
+                  {% endif %}"
+              > <!-- shadow-inner-glow py-6 rounded-xl -->
             {% block content %}
             {% endblock %}
         </main>

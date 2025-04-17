@@ -18,34 +18,40 @@
     }
 }
 
-@layer utilities {
-    .shadow-inner-glow {
-      box-shadow:
-        inset 0 0 80px rgba(30, 30, 63, 0.5),
-        inset 0 0 20px rgba(177, 136, 255, 0.5);
-      background: linear-gradient(to bottom, #1e1e3f, #7A4BBF);
-    }
-}
-
 @layer components { 
-    button {
-        @apply cursor-pointer; /* Same hover effect as cursor of anchor */
+    /* For WebKit browsers (Chrome, Safari, newer Edge) */
+    ::-webkit-scrollbar {
+        width: 0px; /* For vertical scrollbar */
+        height: 0px; /* For horizontal scrollbar */
     }
+    
+    ::-webkit-scrollbar-thumb {
+        background: transparent;
+    }
+    
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    button {
+        @apply cursor-pointer /* Same hover effect as cursor of anchor */
+               opacity-30; /* when not hovered it is greyer */
+    }
+    button:hover {
+        @apply opacity-100; /* hover makes it to original state */
+    }
+    a {
+        @apply opacity-30; /* when not hovered it is greyer */
+    }
+    a:hover {
+        @apply opacity-100; /* hover makes it to original state */
+    } 
     .tag { /* Tag button style for all tags despite of functionality. */
         @apply text-white /* Text color */ 
                px-5 /* Padding x */
-               py-1 /* Padding y */
-               border border-none rounded-[1.2em]; /* Rounded corners */
-    }
-    a {
-        @apply opacity-30;
-    } 
-    a:hover {
-        @apply opacity-100;
-    }
-    button {
-        @apply opacity-30
-               hover:opacity-100;
+               py-3 /* Padding y */
+               grayscale-20 /* Little greyness */
+               italic
+               border border-none rounded-[1.2em] /* Rounded corners */;
     }
 
     /* Navigation Menu */
@@ -57,22 +63,13 @@
     }
     .nav-menu .nav-button {
         @apply text-white /* Text color */
-               text-[27px] /* Font size */
-               opacity-30;
-    }
-    .nav-menu .nav-button:hover {
-        @apply opacity-100;
+               text-[27px] /* Font size */;
     }
 
     /* Contacts Footer */
     .footer-contacts {
         @apply flex flex-row /* Initilaize flexbox */
-               justify-around /* Even space between items */
-               items-center /* Align items to the center (horizontal) */;
-    }
-    .footer-contacts li {
-        @apply opacity-50
-               hover:opacity-100 ;
+               justify-around /* Even space between items */;
     }
     .footer-contacts img {
         @apply w-[55px] /* Width of the image */
@@ -82,16 +79,19 @@
     /* Main Content */
     .main-container { 
         @apply min-h-screen /* Minimum height of the screen */
-               my-6;
+               my-6
+               p-4
+               border rounded-[2em] border-none;
     }
     .main-container h1 {
         @apply text-[50px] /* Font size */
                text-[#ffffff] /* Text color */
                px-10 /* Padding x */
-               my-4;
+               my-4 /* Margin */ 
+               italic;
     }
     .main-container p {
-        @apply text-[32px] /* Font size */
+        @apply text-[30px] /* Font size */
                text-[#999999] /* Text color */
                px-10 /* Padding x */;
     }
@@ -102,19 +102,20 @@
                items-center /* Align items to the center (horizontal) */;
     }
     .main-container .header-w-filter .dropdown {
-        @apply relative inline-block /* Dropdown menu */;
+        @apply relative /* makes the menu position relative to the button */
+               inline-block;
     }
     .main-container .header-w-filter .dropdown .tag-button {
-        @apply text-[32px] /* Font size */;
+        @apply text-[30px] /* Font size */;
     }
     .main-container .header-w-filter .dropdown .dropdown-tags {
         @apply bg-transparent /* Transparent background */
-               absolute     /* Position absolute */
+               absolute /* make the button to stay still when opened */
                min-w-max /* Minimum width of the dropdown */
                left-0 /* Align to the left */;
     }
     .main-container .header-w-filter .dropdown .dropdown-tags .tag-anchor {
-        @apply text-[28px] /* Font size */;
+        @apply text-[24px] /* Font size */;
     }
 
     .main-container .project-container-container {
@@ -125,9 +126,11 @@
     .main-container .project-container-container .project-container {
         @apply border border-none rounded-[2em] /* Rounded corder */
                h-[400px] /* Height */
-               bg-gradient-to-b from-[#1e1e3f] to-black
+               bg-gradient-to-b from-[#1f0d4b] to-black
                p-3
                flex justify-center /* Center the content */;
+        background: 
+            linear-gradient(#5e5ed3, #372065);
     }
     .main-container .project-container-container .project-container 
     .project {
@@ -149,29 +152,26 @@
     }
     .main-container .project-container-container .project-container 
     .project .title a {
-        @apply text-[40px] /* Font size */
-               font-bold
-               text-white /* Text color */
-               w-1/6
+        @apply w-1/6
+               text-white text-[40px] font-bold
                flex justify-center /* Centers text horizontally & vertically */;
     }
     .main-container .project-container-container .project-container 
     .project p {
         @apply h-2/3 /* Height */
                overflow-y-auto
-               overflow-x-hidden /* 👈 prevent horizontal scroll */
-               break-words /* 👈 wrap long words/text */
+               break-words /* wrap long words/text */
                text-[#B7B7B7] /* Whiter text */
                p-2 /* Padding x */
                text-[20px];
     }
     .main-container .project-container-container .project-container 
     .project .tags {
-        @apply h-1/6 /* Height */
-               p-2 /* Padding x */
-               overflow-x-auto /* Allow horizontal scrolling */
+        @apply max-h-1/6 /* Height */
+               min-w-full
+               px-2 /* Padding x */
+               overflow-x-auto
                border border-none rounded-[1.2em]
-               grayscale-25
-               flex justify-start gap-2 items-center /* Align items to the left */; 
+               grid grid-cols-3 gap-2; 
     }
 }
