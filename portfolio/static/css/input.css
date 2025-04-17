@@ -22,8 +22,8 @@
     .shadow-inner-glow {
       box-shadow:
         inset 0 0 80px rgba(30, 30, 63, 0.5),
-        inset 0 0 20px rgba(66, 148, 166, 0.6);
-      background: linear-gradient(to bottom, #1e1e3f, #4294a6);
+        inset 0 0 20px rgba(177, 136, 255, 0.5);
+      background: linear-gradient(to bottom, #1e1e3f, #7A4BBF);
     }
 }
 
@@ -87,7 +87,8 @@
     .main-container h1 {
         @apply text-[50px] /* Font size */
                text-[#ffffff] /* Text color */
-               px-10 /* Padding x */;
+               px-10 /* Padding x */
+               my-4;
     }
     .main-container p {
         @apply text-[32px] /* Font size */
@@ -124,7 +125,7 @@
     .main-container .project-container-container .project-container {
         @apply border border-none rounded-[2em] /* Rounded corder */
                h-[400px] /* Height */
-               bg-gradient-to-b from-[#272727] to-black
+               bg-gradient-to-b from-[#1e1e3f] to-black
                p-3
                flex justify-center /* Center the content */;
     }
