@@ -21,16 +21,7 @@ def projects(request):
     """
     projects = Project.objects.all() # Get all projects ojbects from the database used to display projects
     tags = Tag.objects.all() # Get all tags ojbects from the database used in filter button
-    return render(request, 'portfolio/projects.html', {'projects' : projects, 'tags': tags})
-
-def analytics(request):
-    """_summary_
-        Returns HTML for 'analytics' page.
-        
-    Args:
-        request (_type_): django request from ./urls.py
-    """
-    return render(request, 'portfolio/analytics.html', {})                                         
+    return render(request, 'portfolio/projects.html', {'projects' : projects, 'tags': tags})                                       
 
 def filter(request, tag):
     """_summary_

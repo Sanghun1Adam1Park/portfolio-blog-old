@@ -103,7 +103,8 @@
     }
     .main-container .header-w-filter .dropdown {
         @apply relative /* makes the menu position relative to the button */
-               inline-block;
+               inline-block
+               z-50;
     }
     .main-container .header-w-filter .dropdown .tag-button {
         @apply text-[30px] /* Font size */;
@@ -126,11 +127,10 @@
     .main-container .project-container-container .project-container {
         @apply border border-none rounded-[2em] /* Rounded corder */
                h-[400px] /* Height */
-               bg-gradient-to-b from-[#1f0d4b] to-black
                p-3
-               flex justify-center /* Center the content */;
-        background: 
-            linear-gradient(#5e5ed3, #372065);
+               flex justify-center /* Center the content */
+               bg-[rgba(217,210,233,0.3)]
+               backdrop-blur-md
     }
     .main-container .project-container-container .project-container 
     .project {
